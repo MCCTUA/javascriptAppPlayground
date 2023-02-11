@@ -64,3 +64,21 @@ const birds = {
 
 const entries = Object.entries(birds);
 console.log(entries);
+
+// Convert Array back to Object with Object.fromEntries()
+
+let backToObject = Object.fromEntries(entries);
+
+console.log("Back to Object : ", backToObject);
+
+let backtoObjectWithAssign = Object.assign({}, entries);
+
+console.log(backtoObjectWithAssign);
+
+const arr = ["zero", "one", "two"];
+
+const objFromArrayByReduce = arr.reduce((accumulator, value, index) => {
+  return { ...accumulator, ["key" + index]: value };
+}, {});
+
+console.log("objFromArrayByReduce : ->", objFromArrayByReduce);

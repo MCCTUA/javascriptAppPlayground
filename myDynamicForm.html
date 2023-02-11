@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Dynamic Form V.0.0.1</h1>
+    <form id="mainForm">
+      <div id="inputFields"></div>
+      <button id="appendButton" type="button">Append</button>
+      <button type="summit">summit</button>
+    </form>
+    <script>
+      const mainForm = document.getElementById("mainForm");
+      const inputFields = document.getElementById("inputFields");
+      const appendButton = document.getElementById("appendButton");
+
+      let inputCount = 0;
+
+      const inputHtml = `
+        <input type="date" name="date${inputCount}"/>
+        <input type="text" name="category${inputCount}" placeholder="category">
+        <input type="number" name="qyt${inputCount}" placeholder="quantity number">`;
+
+      appendButton.addEventListener("click", () => {
+        let inputC = inputCount++;
+
+        const dateInput = document.createElement("input");
+        dateInput.name = `date${inputC}`;
+        dateInput.type = "date";
+
+        const categoryInput = document.createElement("input");
+        categoryInput.name = `category${inputC}`;
+        categoryInput.type = "text";
+
+        const qtyInput = document.createElement("input");
+        qtyInput.name = `qty${inputC}`;
+        qtyInput.type = "number";
+        const inputBr = document.createElement("br");
+
+        inputFields.append(dateInput, categoryInput, qtyInput, inputBr);
+      });
+
+      mainForm.addEventListener("submit", () => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        console.log(formData.entries());
+        for (const [key, value] of formData.entries()) {
+          console.log(`${key} = ${value}`);
+        }
+      });
+    </script>
+  </body>
+</html>

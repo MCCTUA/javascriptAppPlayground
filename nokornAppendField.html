@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      input {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="mainForm">
+      <div id="inputFields"></div>
+      <button id="buttonAppendInput" type="button">Append</button>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const mainForm = document.getElementById("mainForm");
+      const inputFields = document.getElementById("inputFields");
+      const buttonAppendInput = document.getElementById("buttonAppendInput");
+
+      let inputCount = 0;
+
+      buttonAppendInput.addEventListener("click", () => {
+        const input = document.createElement("input");
+        input.name = `name${inputCount++}`;
+        input.type = "text";
+        input.placeholder = "Please input something";
+        inputFields.append(input);
+      });
+
+      mainForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        console.log(formData.entries());
+        for (const [key, value] of formData.entries()) {
+          console.log(`${key} = ${value}`);
+        }
+      });
+    </script>
+  </body>
+</html>

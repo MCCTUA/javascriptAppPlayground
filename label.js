@@ -150,5 +150,6 @@ const inputName = {
   isPrint: "chekc for print",
   brand: "Brand",
   model: "model",
+  sku: "SKU",
 };
 console.log(Object.entries(inputName));

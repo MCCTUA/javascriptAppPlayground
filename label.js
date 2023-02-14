@@ -144,12 +144,3 @@ console.log(newSn);
 const newData = modifySn(newSn, fakeInputData[0]);
 
 const dataBaseList = [...demoData, ...newData];
-
-/*******/
-const inputName = {
-  isPrint: "chekc for print",
-  brand: "Brand",
-  model: "model",
-  sku: "SKU",
-};
-console.log(Object.entries(inputName));

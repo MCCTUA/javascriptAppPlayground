@@ -43,7 +43,76 @@ const inputForm = [
     type: "text",
     placeholder: "power",
   },
+  {
+    tag: "input",
+    name: "input",
+    type: "text",
+    placeholder: "Input AC",
+  },
+  {
+    tag: "input",
+    name: "surge",
+    type: "text",
+    placeholder: "surge",
+  },
+  {
+    tag: "input",
+    name: "cct",
+    type: "text",
+    placeholder: "cct",
+  },
+  {
+    tag: "input",
+    name: "cri",
+    type: "text",
+    placeholder: "cri",
+  },
+  {
+    tag: "input",
+    name: "lumen",
+    type: "text",
+    placeholder: "lumen",
+  },
+  {
+    tag: "input",
+    name: "beam angle",
+    type: "text",
+    placeholder: "beam angle",
+  },
+  {
+    tag: "input",
+    name: "customer",
+    type: "text",
+    placeholder: "customer name",
+  },
+  {
+    tag: "select",
+    name: "supplier",
+    option: {
+      0: null,
+      scl: "SCL",
+      bnt: "B & T",
+      tyd: "TYD",
+    },
+  },
+  {
+    tag: "input",
+    name: "reciept date",
+    type: "date",
+    label: {
+      innerText: "วันรับสินค้าเข้า",
+    },
+  },
+  {
+    tag: "input",
+    name: "delivery date",
+    type: "date",
+    label: {
+      innerText: "วันส่งสินค้า",
+    },
+  },
 ];
+
 const inputName = {
   isPrint: "chekc for print",
   brand: "Brand",
@@ -61,6 +130,7 @@ appendButton.addEventListener("click", () => {
   let inputCounted = inputIndexCount++;
   const inputArray = inputForm.map((el) => {
     let input = "";
+    let label = "";
     console.log("tag type :", el.type);
     console.log("placeholder : ", el.placeholder);
     console.log("value : ", el.value);
@@ -71,6 +141,9 @@ appendButton.addEventListener("click", () => {
             input = document.createElement(`${el.tag}`);
             input.name = `${el.name}${inputCounted}`;
             input.type = `${el.type}`;
+            label = document.createElement("label");
+            label.for = `${el.name}`;
+            label.innerText = `${el.label.innerText}`;
 
             break;
           default:
@@ -78,7 +151,9 @@ appendButton.addEventListener("click", () => {
             input.name = `${el.name}${inputCounted}`;
             input.type = `${el.type}`;
             input.placeholder = `${el.placeholder}`;
-
+            label = document.createElement("label");
+            label.for = `${el.name}${inputCounted}`;
+            label.innerText = `${el.placeholder}`;
             break;
         }
         break;
@@ -97,9 +172,14 @@ appendButton.addEventListener("click", () => {
         break;
     }
 
-    return input;
+    return [input, label];
   });
-  inputArea.append(...inputArray);
+
+  // version 2
+  console.log(inputArray);
+  inputArray.map((el) => {
+    inputArea.append(el[1], el[0]);
+  });
   const brTag = document.createElement("br");
   inputArea.append(brTag);
 });
@@ -112,11 +192,3 @@ formInput.addEventListener("submit", (event) => {
     console.log(`${key} = ${value}`);
   }
 });
-
-const obj1 = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-delete obj1.c;
-console.log(obj1);
